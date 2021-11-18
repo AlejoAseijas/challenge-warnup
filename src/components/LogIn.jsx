@@ -2,7 +2,6 @@ import React from "react";
 import Axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../context/appContext";
-import Home from "./Home";
 function LogIn({ setAuth }) {
   const { IsLogIn } = useAppContext();
   async function ApiConnect(data) {
