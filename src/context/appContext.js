@@ -9,8 +9,13 @@ export const AppContext = ({ children }) => {
     localStorage.setItem("tokenLogIn", token);
   };
 
+  const postToDetail = (id) => {
+    let postDetail = posts.find((data) => data.id == id); //Not use ===. Because return undifined.
+    return postDetail;
+  };
+
   return (
-    <appContext.Provider value={{ IsLogIn, setPosts, posts }}>
+    <appContext.Provider value={{ IsLogIn, setPosts, posts, postToDetail }}>
       {children}
     </appContext.Provider>
   );
