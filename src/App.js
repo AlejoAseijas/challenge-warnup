@@ -28,6 +28,8 @@ function App() {
               <Home />
             </Route>
           )}
+          <Route exact path="/detail/:idPost"></Route>
+          <Route exact path="/new-post/"></Route>
         </Switch>
       </Router>
     </AppContext>
