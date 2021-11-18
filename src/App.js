@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import LogIn from "./components/LogIn";
+import Home from "./components/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AppContext } from "./context/appContext";
 
 function App() {
+  const [auth, setAuth] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("tokenLogIn")) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext>
+      <Router>
+        <Switch>
+          {auth === false ? (
+            <Route exact path="/">
+              <LogIn />
+            </Route>
+          ) : (
+            <Route exact path="/">
+              <Home />
+            </Route>
+          )}
+        </Switch>
+      </Router>
+    </AppContext>
   );
 }
 
