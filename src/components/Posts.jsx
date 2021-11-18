@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 function Posts() {
-  const { posts } = useAppContext();
+  const { posts, isNewPost, newPost } = useAppContext();
 
   return (
     <>
@@ -20,6 +20,24 @@ function Posts() {
           </div>
         );
       })}
+      {isNewPost === true ? (
+        <>
+          <h1 className="text-center m-1">Recent posts</h1>
+          <div
+            className="conatiner border border-dark m-1 p-2"
+            key={newPost.id}
+          >
+            <h1 className="text-center">{newPost.title}</h1>
+            <p>{newPost.body}</p>
+            <div className="conatiner text-center">
+              <button className="btn btn-outline-info m-1"> Modify </button>
+              <button className="btn btn-outline-danger"> Delete </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

@@ -5,6 +5,9 @@ export const useAppContext = () => useContext(appContext);
 
 export const AppContext = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState([]);
+  const [isNewPost, setIsNewPost] = useState(false);
+
   const IsLogIn = (token) => {
     localStorage.setItem("tokenLogIn", token);
   };
@@ -15,7 +18,18 @@ export const AppContext = ({ children }) => {
   };
 
   return (
-    <appContext.Provider value={{ IsLogIn, setPosts, posts, postToDetail }}>
+    <appContext.Provider
+      value={{
+        IsLogIn,
+        setPosts,
+        posts,
+        postToDetail,
+        newPost,
+        setNewPost,
+        isNewPost,
+        setIsNewPost,
+      }}
+    >
       {children}
     </appContext.Provider>
   );

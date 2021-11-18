@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import DetailPost from "./components/DetailPost";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppContext } from "./context/appContext";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -33,7 +34,7 @@ function App() {
             path="/detail/post/:idPost"
             component={DetailPost}
           ></Route>
-          <Route exact path="/new-post/"></Route>
+          <Route exact path="/new-post/" component={CreatePost}></Route>
         </Switch>
       </Router>
     </AppContext>

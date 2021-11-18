@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { useAppContext } from "../context/appContext";
-//import { useLocation } from "react-router-dom";
 
 function DetailPost(id) {
   const { postToDetail } = useAppContext();
@@ -16,7 +15,7 @@ function DetailPost(id) {
         <h1 className="text-center">{data.title}</h1>
         <p>{data.body}</p>
         <div className="conatiner text-center">
-          <button className="btn btn-outline-info "> Modify </button>
+          <button className="btn btn-outline-info m-1"> Modify </button>
           <button className="btn btn-outline-danger"> Delete </button>
         </div>
       </div>
