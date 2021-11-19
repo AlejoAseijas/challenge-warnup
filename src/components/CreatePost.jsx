@@ -37,6 +37,22 @@ function CreatePost() {
           bodyPost: "",
           userId: "",
         }}
+        validate={(data) => {
+          let err = {};
+
+          if (!data.titlePost) {
+            err.titlePost = "Enter title post";
+          }
+          if (!data.bodyPost) {
+            err.bodyPost = "Enter body post";
+          }
+          if (!data.userId) {
+            err.userId = "Enter userId";
+          } else if (!/^[0-9]+$/.test(data.userId)) {
+            err.userId = "Invalid userId, Only numbers";
+          }
+          return err;
+        }}
         onSubmit={(data, { resetForm }) => {
           resetForm();
           newPostWrite(data);
@@ -88,6 +104,12 @@ function CreatePost() {
                             className="form-control"
                             id="id"
                             name="userId"
+                          />
+                          <ErrorMessage
+                            name="userId"
+                            component={() => (
+                              <div className="error"> {errors.userId} </div>
+                            )}
                           />
                         </div>
                       </div>
