@@ -38,27 +38,32 @@ export const AppContext = ({ children }) => {
   };
 
   const editPost = async (data) => {
-    // let id = parseInt(data.userId);
-    // const res = await Axios.put(
-    //   `https://jsonplaceholder.typicode.com/posts/${id}`,
-    //   JSON.stringify({
-    //     title: data.titlePost,
-    //     body: data.bodyPost,
-    //     userId: id,
-    //   }),
-    //   {
-    //     headers: {
-    //       "Content-type": "application/json; charset=UTF-8",
-    //     },
-    //   }
-    // );
-    // if (res.status === 200) {
-    //   //const newPostsEdits = posts.find((data) => data.id === id);
-    //   console.log(res.data);
-    // } else {
-    //   alert("error");
-    // }
-    console.log(data);
+    let id = parseInt(data.userId);
+    const res = await Axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      JSON.stringify({
+        title: data.titlePost,
+        body: data.bodyPost,
+        userId: id,
+      }),
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+    if (res.status === 200) {
+      const newPostsEdits = posts.find((data) => data.id === id);
+      newPostsEdits.title = res.data.title;
+      newPostsEdits.body = res.data.body;
+      const newSave = posts.filter((data) => {
+        return data.id != id;
+      });
+      newSave.push(newPostsEdits);
+      setPosts(newSave);
+    } else {
+      alert("error");
+    }
   };
 
   const deletePost = async (id) => {
