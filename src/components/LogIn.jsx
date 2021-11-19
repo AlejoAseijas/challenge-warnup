@@ -11,6 +11,7 @@ function LogIn({ setAuth }) {
         password: data.passwordUser,
       });
       IsLogIn(res.data.token);
+      window.location.reload();
     } catch (err) {
       alert(err);
     }
