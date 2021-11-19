@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const getListPosts = async () => {
       const response = await Axios.get(
-        " https://jsonplaceholder.typicode.com/posts"
+        " https://jsonplaceholder.typicode.com/posts?_start=5&_limit=5"
       );
       setPosts(response.data);
       setLoading(true);
