@@ -17,6 +17,11 @@ export const AppContext = ({ children }) => {
     return postDetail;
   };
 
+  const deletePost = (id) => {
+    const newDataPost = posts.filter((postToDelete) => postToDelete.id != id);
+    return setPosts(newDataPost);
+  };
+
   return (
     <appContext.Provider
       value={{
@@ -26,6 +31,7 @@ export const AppContext = ({ children }) => {
         setLoading,
         loading,
         postToDetail,
+        deletePost,
       }}
     >
       {children}

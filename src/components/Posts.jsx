@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 function Posts() {
-  const { posts } = useAppContext();
+  const { posts, deletePost } = useAppContext();
 
   return (
     <>
@@ -14,8 +14,17 @@ function Posts() {
               <Link to={`/detail/post/${data.id}`}>
                 <button className="btn btn-outline-success">Detail</button>
               </Link>
-              <button className="btn btn-outline-info m-2"> Modify </button>
-              <button className="btn btn-outline-danger"> Delete </button>
+              <button className="btn btn-outline-info m-2">Modify</button>
+              <button
+                className="btn btn-outline-danger"
+                data-id={data.id}
+                onClick={(e) => {
+                  deletePost(e.target.dataset.id);
+                  window.location.reload();
+                }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         );
