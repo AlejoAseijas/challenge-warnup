@@ -20,7 +20,6 @@ function Posts() {
                 data-id={data.id}
                 onClick={(e) => {
                   deletePost(e.target.dataset.id);
-                  window.location.reload();
                 }}
               >
                 Delete

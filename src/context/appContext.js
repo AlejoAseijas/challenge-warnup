@@ -1,3 +1,4 @@
+import Axios from "axios";
 import { useState, createContext, useContext } from "react";
 const appContext = createContext();
 
@@ -17,9 +18,17 @@ export const AppContext = ({ children }) => {
     return postDetail;
   };
 
-  const deletePost = (id) => {
-    const newDataPost = posts.filter((postToDelete) => postToDelete.id != id);
-    return setPosts(newDataPost);
+  const deletePost = async (id) => {
+    let response = await Axios.delete(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    if (response.status === 200) {
+      const newDataPost = posts.filter((postToDelete) => postToDelete.id != id);
+      setPosts(newDataPost);
+      return window.location.reload();
+    } else {
+      alert("error to delete");
+    }
   };
 
   return (
