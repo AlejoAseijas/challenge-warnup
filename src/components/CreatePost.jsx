@@ -101,7 +101,8 @@ function CreatePost(e) {
                           <div className="mb-4">
                             <label className="form-label">Id</label>
                             <Field
-                              type="text"
+                              type="number"
+                              min="101"
                               className="form-control"
                               id="id"
                               name="userId"
