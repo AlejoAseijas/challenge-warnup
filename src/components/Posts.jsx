@@ -14,7 +14,9 @@ function Posts() {
               <Link to={`/detail/post/${data.id}`}>
                 <button className="btn btn-outline-success">Detail</button>
               </Link>
-              <button className="btn btn-outline-info m-2">Modify</button>
+              <Link to={`/edit/post/${data.id}`}>
+                <button className="btn btn-outline-info m-2">Modify</button>
+              </Link>
               <button
                 className="btn btn-outline-danger"
                 data-id={data.id}

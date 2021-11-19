@@ -40,6 +40,7 @@ function App() {
         )}
         <Route exact path="/detail/post/:idPost" component={DetailPost}></Route>
         <Route exact path="/new-post/" component={CreatePost}></Route>
+        <Route exact path="/edit/post/:idPost" component={CreatePost}></Route>
       </Switch>
     </Router>
   );

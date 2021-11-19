@@ -21,22 +21,42 @@ export const AppContext = ({ children }) => {
   const createNewPost = async (data) => {
     let id = parseInt(data.userId);
     const res = await Axios.post(
-      "https://httpbin.org/post",
-      {
+      "https://jsonplaceholder.typicode.com/posts",
+      JSON.stringify({
         title: data.titlePost,
         body: data.bodyPost,
         userId: id,
-      },
+      }),
       {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       }
     );
-    let dataPost = JSON.parse(res.data.data);
-    dataPost.id = dataPost.userId;
-    setPosts([...posts, dataPost]);
+    console.log(res);
+    setPosts([...posts, res.data]);
     alert("Post Creado");
+  };
+
+  const editPost = async (data) => {
+    let id = parseInt(data.userId);
+    const res = await Axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      JSON.stringify({
+        title: data.titlePost,
+        body: data.bodyPost,
+        userId: id,
+      }),
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+    if (res.status === 200) {
+    } else {
+      alert("error");
+    }
   };
 
   const deletePost = async (id) => {
@@ -62,6 +82,7 @@ export const AppContext = ({ children }) => {
         loading,
         createNewPost,
         postToDetail,
+        editPost,
         deletePost,
       }}
     >
