@@ -38,9 +38,21 @@ function App() {
             <Home />
           </Route>
         )}
-        <Route exact path="/detail/post/:idPost" component={DetailPost}></Route>
-        <Route exact path="/new-post/" component={CreatePost}></Route>
-        <Route exact path="/edit/post/:idPost" component={CreatePost}></Route>
+        <Route
+          exact
+          path="/detail/post/:idPost"
+          component={auth === true ? DetailPost : LogIn}
+        ></Route>
+        <Route
+          exact
+          path="/new-post/"
+          component={auth === true ? CreatePost : LogIn}
+        ></Route>
+        <Route
+          exact
+          path="/edit/post/:idPost"
+          component={auth === true ? CreatePost : LogIn}
+        ></Route>
       </Switch>
     </Router>
   );
