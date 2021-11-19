@@ -33,30 +33,32 @@ export const AppContext = ({ children }) => {
         },
       }
     );
-    console.log(res);
     setPosts([...posts, res.data]);
     alert("Post Creado");
   };
 
   const editPost = async (data) => {
-    let id = parseInt(data.userId);
-    const res = await Axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${id}`,
-      JSON.stringify({
-        title: data.titlePost,
-        body: data.bodyPost,
-        userId: id,
-      }),
-      {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
-    if (res.status === 200) {
-    } else {
-      alert("error");
-    }
+    // let id = parseInt(data.userId);
+    // const res = await Axios.put(
+    //   `https://jsonplaceholder.typicode.com/posts/${id}`,
+    //   JSON.stringify({
+    //     title: data.titlePost,
+    //     body: data.bodyPost,
+    //     userId: id,
+    //   }),
+    //   {
+    //     headers: {
+    //       "Content-type": "application/json; charset=UTF-8",
+    //     },
+    //   }
+    // );
+    // if (res.status === 200) {
+    //   //const newPostsEdits = posts.find((data) => data.id === id);
+    //   console.log(res.data);
+    // } else {
+    //   alert("error");
+    // }
+    console.log(data);
   };
 
   const deletePost = async (id) => {
@@ -66,7 +68,6 @@ export const AppContext = ({ children }) => {
     if (response.status === 200) {
       const newDataPost = posts.filter((postToDelete) => postToDelete.id != id);
       setPosts(newDataPost);
-      return window.location.reload();
     } else {
       alert("error to delete");
     }
