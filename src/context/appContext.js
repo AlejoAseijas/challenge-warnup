@@ -5,14 +5,14 @@ export const useAppContext = () => useContext(appContext);
 
 export const AppContext = ({ children }) => {
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState([]);
-  const [isNewPost, setIsNewPost] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const IsLogIn = (token) => {
     localStorage.setItem("tokenLogIn", token);
   };
 
   const postToDetail = (id) => {
+    // eslint-disable-next-line eqeqeq
     let postDetail = posts.find((data) => data.id == id); //Not use ===. Because return undifined.
     return postDetail;
   };
@@ -23,11 +23,9 @@ export const AppContext = ({ children }) => {
         IsLogIn,
         setPosts,
         posts,
+        setLoading,
+        loading,
         postToDetail,
-        newPost,
-        setNewPost,
-        isNewPost,
-        setIsNewPost,
       }}
     >
       {children}

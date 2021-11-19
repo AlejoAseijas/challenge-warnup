@@ -3,15 +3,19 @@ import NavBar from "./NavBar";
 import Axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../context/appContext";
-import Posts from "./Posts";
 
 function CreatePost() {
-  const { newPost, setNewPost, setIsNewPost } = useAppContext();
+  const { posts, setPosts } = useAppContext();
 
   const newPostWrite = async (data) => {
+    let id = parseInt(data.userId);
     const res = await Axios.post(
       "https://httpbin.org/post",
-      { title: data.titlePost, body: data.bodyPost, userId: data.userId },
+      {
+        title: data.titlePost,
+        body: data.bodyPost,
+        userId: id,
+      },
       {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -19,8 +23,9 @@ function CreatePost() {
       }
     );
     let dataPost = JSON.parse(res.data.data);
-    setNewPost(dataPost);
-    setIsNewPost(true);
+    dataPost.id = dataPost.userId;
+    setPosts([...posts, dataPost]);
+    alert("Post Creado");
   };
 
   return (
@@ -102,7 +107,6 @@ function CreatePost() {
           </div>
         )}
       </Formik>
-      <Posts />
     </>
   );
 }
