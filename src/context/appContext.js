@@ -18,6 +18,27 @@ export const AppContext = ({ children }) => {
     return postDetail;
   };
 
+  const createNewPost = async (data) => {
+    let id = parseInt(data.userId);
+    const res = await Axios.post(
+      "https://httpbin.org/post",
+      {
+        title: data.titlePost,
+        body: data.bodyPost,
+        userId: id,
+      },
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+    let dataPost = JSON.parse(res.data.data);
+    dataPost.id = dataPost.userId;
+    setPosts([...posts, dataPost]);
+    alert("Post Creado");
+  };
+
   const deletePost = async (id) => {
     let response = await Axios.delete(
       `https://jsonplaceholder.typicode.com/posts/${id}`
@@ -39,6 +60,7 @@ export const AppContext = ({ children }) => {
         posts,
         setLoading,
         loading,
+        createNewPost,
         postToDetail,
         deletePost,
       }}

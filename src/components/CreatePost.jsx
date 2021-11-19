@@ -5,28 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../context/appContext";
 
 function CreatePost() {
-  const { posts, setPosts } = useAppContext();
-
-  const newPostWrite = async (data) => {
-    let id = parseInt(data.userId);
-    const res = await Axios.post(
-      "https://httpbin.org/post",
-      {
-        title: data.titlePost,
-        body: data.bodyPost,
-        userId: id,
-      },
-      {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
-    let dataPost = JSON.parse(res.data.data);
-    dataPost.id = dataPost.userId;
-    setPosts([...posts, dataPost]);
-    alert("Post Creado");
-  };
+  const { createNewPost } = useAppContext();
 
   return (
     <>
@@ -55,7 +34,7 @@ function CreatePost() {
         }}
         onSubmit={(data, { resetForm }) => {
           resetForm();
-          newPostWrite(data);
+          createNewPost(data);
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur }) => (

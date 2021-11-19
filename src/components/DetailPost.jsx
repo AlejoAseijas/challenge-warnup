@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 import { useAppContext } from "../context/appContext";
 
 function DetailPost(id) {
-  const { postToDetail, deletePost } = useAppContext();
+  const { postToDetail } = useAppContext();
   const idPost = id.match.params.idPost;
   const data = postToDetail(idPost);
 
