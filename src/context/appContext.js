@@ -37,14 +37,14 @@ export const AppContext = ({ children }) => {
     alert("Post Creado");
   };
 
-  const editPost = async (data) => {
-    let id = parseInt(data.userId);
+  const editPost = async (data, idPost) => {
+    let userId = parseInt(data.userId);
     const res = await Axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      `https://jsonplaceholder.typicode.com/posts/${idPost}`,
       JSON.stringify({
         title: data.titlePost,
         body: data.bodyPost,
-        userId: id,
+        userId: userId,
       }),
       {
         headers: {
@@ -53,11 +53,11 @@ export const AppContext = ({ children }) => {
       }
     );
     if (res.status === 200) {
-      const newPostsEdits = posts.find((data) => data.id === id);
+      const newPostsEdits = posts.find((data) => data.id == idPost);
       newPostsEdits.title = res.data.title;
       newPostsEdits.body = res.data.body;
       const newSave = posts.filter((data) => {
-        return data.id != id;
+        return data.id != idPost;
       });
       newSave.push(newPostsEdits);
       setPosts(newSave);

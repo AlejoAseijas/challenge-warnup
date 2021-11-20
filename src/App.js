@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LogIn from "./components/LogIn";
 import Home from "./components/Home";
+import EditPost from "./components/EditPost";
 import DetailPost from "./components/DetailPost";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreatePost from "./components/CreatePost";
@@ -41,17 +42,17 @@ function App() {
         <Route
           exact
           path="/detail/post/:idPost"
-          component={auth === true ? DetailPost : LogIn}
+          component={auth ? DetailPost : LogIn}
         ></Route>
         <Route
           exact
           path="/new-post/"
-          component={auth === true ? CreatePost : LogIn}
+          component={auth ? CreatePost : LogIn}
         ></Route>
         <Route
           exact
           path="/edit/post/:idPost"
-          component={auth === true ? CreatePost : LogIn}
+          component={auth ? EditPost : LogIn}
         ></Route>
       </Switch>
     </Router>
