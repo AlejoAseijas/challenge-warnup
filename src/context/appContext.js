@@ -61,6 +61,7 @@ export const AppContext = ({ children }) => {
       });
       newSave.push(newPostsEdits);
       setPosts(newSave);
+      alert("Post editado");
     } else {
       alert("error");
     }
