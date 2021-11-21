@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "./NavBar";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../context/appContext";
-import { render } from "@testing-library/react";
 
 function EditPost(loc) {
   let idPost = loc.match.params.idPost;

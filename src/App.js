@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreatePost from "./components/CreatePost";
 import { useAppContext } from "../src/context/appContext";
 import Axios from "axios";
+import Error404 from "./components/Error404";
 function App() {
   const { setPosts, setLoading } = useAppContext();
 
@@ -54,6 +55,7 @@ function App() {
           path="/edit/post/:idPost"
           component={auth ? EditPost : LogIn}
         ></Route>
+        <Route path="*" component={Error404} />
       </Switch>
     </Router>
   );

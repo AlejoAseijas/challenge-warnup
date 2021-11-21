@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { useState, createContext, useContext } from "react";
+import Error404 from "../components/Error404";
 const appContext = createContext();
 
 export const useAppContext = () => useContext(appContext);
