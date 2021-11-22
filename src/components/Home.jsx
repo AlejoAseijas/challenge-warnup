@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Axios from "axios";
+import React from "react";
 
 import { useAppContext } from "../context/appContext";
 import Posts from "./Posts";
